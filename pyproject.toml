@@ -1,0 +1,16 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=65.5.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dbt-contract-gen"
+version = "0.1.0"
+description = "CLI that helps with dbt contracts generation "
+readme = "README.md"
+authors = [{ name = "Arnaud Caldow", email = "arnaud.caldow@gmail.com" }]
+dependencies = ["click >= 8.1.7"]
+
+[project.scripts]
+dbt-contract-gen = "dbt-contract-gen.__main__:cli"
