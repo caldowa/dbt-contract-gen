@@ -62,7 +62,7 @@ readme = "README.md"
 authors = [{ name = "Arnaud Caldow", email = "arnaud.caldow@gmail.com" }]
 
 [project.scripts]
-dbt-contract-gen = "dbt-contract-gen.__main__:cli"
+dbt-contract-gen = "dbtcontractgen.__main__:cli"
 
 [tool.setuptools.dynamic]
 dependencies = { file = "requirements.txt" }
