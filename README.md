@@ -86,5 +86,7 @@ Special thanks to the dbt community for providing excellent tools and support.
 
 ## Contact Information
 
-If you have any questions, issues, or suggestions, feel free to open an issue on the GitHub repository or reach out to
-`arnaud.caldow@gmail.com`.
+If you have any questions, issues, or suggestions, feel free to open an issue on the GitHub repository or find me:
+
+- [Email](mailto:arnaud.caldow@gmail.com)
+- [LinkedIn](https://www.linkedin.com/in/arnaud-caldow-384423142/)
