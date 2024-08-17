@@ -1,9 +1,7 @@
 import click
 
 
-@click.command(
-    help="Extracts table structure from a database and outputs a dbt contract"
-)
+@click.command(help="Extracts table structure from a database and outputs a dbt contract")
 @click.argument(
     "schema",
     nargs=1,
