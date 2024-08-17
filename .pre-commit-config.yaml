@@ -1,0 +1,47 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        name: "Remove Trailing Whitespace ✂️"
+        description: "Automatically removes trailing whitespace."
+      - id: end-of-file-fixer
+        name: "Ensure Single Line at End of File 📏"
+        description: "Ensures that files end with a single newline."
+      - id: check-yaml
+        name: "Check YAML Syntax 🧩"
+        description: "Validates the syntax of YAML files."
+      - id: check-added-large-files
+        name: "Check Large Files 📂"
+        description: "Prevents adding large files to the repository."
+      - id: check-merge-conflict
+        name: "Check for Merge Conflicts 🔀"
+        description: "Detects unresolved merge conflict markers."
+      - id: check-toml
+        name: "Check TOML Syntax 📜"
+        description: "Validates the syntax of TOML files."
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.8
+    hooks:
+      - id: ruff
+        args: [--fix]
+        name: "Ruff Lint 🐍"
+        description: "Lint and fix Python code with Ruff."
+      - id: ruff-format
+        name: "Ruff Format 🐍"
+        description: "Format Python code with Ruff."
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-gfm # For GitHub-flavored markdown
+        name: "Format Markdown 📄"
+        description: "Formats Markdown files with mdformat."
+        args: [--number, --wrap, '120']
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.13.0
+    hooks:
+      - id: yamlfmt
+        name: "Format YAML files 🧩"
+        description: "Formats YAML files with google/yamlfmt."
