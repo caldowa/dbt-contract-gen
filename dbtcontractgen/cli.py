@@ -8,6 +8,10 @@ def cli():
     """
 
 
+# TODO add command that checks if the cli can connect to Redshift
+
+
+# TODO modify command so that it runs a query in Redshift and outputs a dbt contract
 @click.command(help="Extracts table structure from a database and outputs a dbt contract")
 @click.argument(
     "schema",
