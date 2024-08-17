@@ -1,1 +1,2 @@
 click>=8.1.7
+redshift-connector>=2.1.3
