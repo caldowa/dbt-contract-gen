@@ -1,4 +1,54 @@
-# pyproject.toml
+# Ruff configuration
+[tool.ruff]
+line-length = 120
+
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".tox",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "*.egg-info",
+    "*.egg",
+    ".eggs",
+    "build",
+    "dist",
+    "docs/_build",
+    "htmlcov",
+    "buck-out",
+    "_build",
+    "node_modules",
+    ".coverage",
+    "coverage.*",
+    ".nox",
+    "tmp",
+    "dbt_packages",
+]
+
+[tool.ruff.lint]
+# I have excluded 'D' (Docstring) rules because we don't really enforce docstrings
+select = [
+    "E",   # Pycodestyle (formerly part of Flake8)
+    "F",   # Pyflakes (formerly part of Flake8)
+    "B",   # Bugbear (a Flake8 plugin)
+    "S",   # Security (from Flake8-bugbear)
+    "A",   # Anti-patterns (from Flake8-comprehensions)
+    "I",   # Import conventions (from isort)
+    "C",   # Cyclomatic complexity (from Flake8-complexity)
+    "RUF", # Ruff specific rules
+]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
 
 [build-system]
 requires = ["setuptools>=65.5.0", "wheel"]
