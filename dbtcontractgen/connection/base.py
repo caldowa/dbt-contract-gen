@@ -24,6 +24,8 @@ class DatabaseConnection(ABC):
 
     def close(self):
         """Close the database connection."""
+        if self.cursor:
+            self.cursor.close()
         if self.conn:
             self.conn.close()
 
@@ -41,7 +43,4 @@ class DatabaseConnection(ABC):
                 if self.conn:
                     self.conn.commit()
         finally:
-            if self.cursor:
-                self.cursor.close()
-            if self.conn:
-                self.close()
+            self.close()
