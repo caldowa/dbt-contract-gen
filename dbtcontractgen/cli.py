@@ -1,7 +1,7 @@
 import click
 
 from dbtcontractgen.connection.postgresql import PostgreSQLConnection
-from dbtcontractgen.utils.dbt_profile_parser import get_credentials
+from dbtcontractgen.utils.dbt import get_credentials
 from dbtcontractgen.utils.queries import FETCH_METADATA_QUERY
 
 
