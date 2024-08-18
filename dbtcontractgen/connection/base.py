@@ -1,3 +1,4 @@
+import logging
 from abc import ABC, abstractmethod
 
 
@@ -17,7 +18,7 @@ class DatabaseConnection(ABC):
         pass
 
     @abstractmethod
-    def run_query(self, query: str):
+    def run_query(self, query: str) -> tuple:
         """Run a query on the database and return the results."""
         pass
 
@@ -28,13 +29,19 @@ class DatabaseConnection(ABC):
 
     def __enter__(self):
         self.connect()
-        return self.cursor
+        return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        if exc_type or exc_value or traceback:
-            self.conn.rollback()
-        else:
-            self.conn.commit()
-        if self.cursor:
-            self.cursor.close()
-        self.close()
+        try:
+            if exc_type is not None:
+                logging.error(f"An error occurred: {exc_value}, {traceback}")
+                if self.conn:
+                    self.conn.rollback()
+            else:
+                if self.conn:
+                    self.conn.commit()
+        finally:
+            if self.cursor:
+                self.cursor.close()
+            if self.conn:
+                self.close()
