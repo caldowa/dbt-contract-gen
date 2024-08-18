@@ -6,7 +6,7 @@ SELECT
 FROM
     information_schema.columns
 WHERE
-    table_schema = 'public'
+    table_schema = '{schema}'
 ORDER BY
     table_name,
     ordinal_position;
