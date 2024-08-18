@@ -23,6 +23,13 @@ def cli():
     multiple=True,
     help="Table to extract, can be used multiple times to extract more tables",
 )
+@click.option(
+    "-d",
+    "--db",
+    type=click.Choice(["postgresql", "redshift"], case_sensitive=False),
+    required=True,
+    help="Specify the type of database to connect to",
+)
 def extract(schema, table):
     click.echo(f"Schema: {schema}")
     for t in table:
