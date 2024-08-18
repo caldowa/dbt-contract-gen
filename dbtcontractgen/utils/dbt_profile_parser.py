@@ -18,9 +18,20 @@ def validate_profile(profile: dict[str, Any], target_name: str) -> dict[str, Any
     target = profile["outputs"][target_name]
 
     # Ensure that all required fields are present
-    required_fields = ["host", "dbname", "user", "password"]
-    for field in required_fields:
-        if field not in target:
+    required_fields = {
+        "host": ["host", "hostname"],
+        "dbname": ["dbname", "database", "db"],
+        "user": ["user", "username"],
+        "password": ["password", "pass"],
+    }
+    for field, aliases in required_fields.items():
+        field_found = False
+        for alias in aliases:
+            if alias in target:
+                target[field] = target[alias]
+                field_found = True
+                break
+        if not field_found:
             raise ValueError(f"Missing required field '{field}' in target '{target_name}'")
 
     return target
@@ -54,7 +65,7 @@ def get_dbt_target(
     return validate_profile(profile, target_name)
 
 
-def get_redshift_credentials(
+def get_credentials(
     profile_name: str, target_name: str = "default", profiles_path: Path | None = None
 ) -> dict[str, Any]:
     """Extract Redshift credentials from a dbt profile.

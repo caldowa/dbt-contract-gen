@@ -1,7 +1,7 @@
 import click
 
 from dbtcontractgen.connection.postgresql import PostgreSQLConnection
-from dbtcontractgen.utils.dbt_profile_parser import get_redshift_credentials
+from dbtcontractgen.utils.dbt_profile_parser import get_credentials
 from dbtcontractgen.utils.queries import FETCH_METADATA_QUERY
 
 
@@ -61,12 +61,12 @@ def extract(schema, table, database, profile, target, filepath):
         click.echo(f"Table: {t}")
 
     if database == "postgresql":
-        credentials = get_redshift_credentials(profile_name=profile, target_name=target, profiles_path=filepath)
+        credentials = get_credentials(profile_name=profile, target_name=target, profiles_path=filepath)
         with PostgreSQLConnection(**credentials) as conn:
             result = conn.run_query(FETCH_METADATA_QUERY.format(schema=schema))
         print(result)
     elif database == "redshift":
-        credentials = get_redshift_credentials(profile_name=profile, target_name=target, profiles_path=filepath)
+        credentials = get_credentials(profile_name=profile, target_name=target, profiles_path=filepath)
         print(credentials)
 
 
