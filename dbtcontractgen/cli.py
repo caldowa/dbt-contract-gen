@@ -65,6 +65,7 @@ def extract(schema, table, database, profile, target, filepath):
         with PostgreSQLConnection(**credentials) as conn:
             result = conn.run_query(FETCH_METADATA_QUERY.format(schema=schema))
         print(result)
+        print(type(result))
     elif database == "redshift":
         credentials = get_credentials(profile_name=profile, target_name=target, profiles_path=filepath)
         print(credentials)
