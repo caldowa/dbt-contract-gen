@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -86,3 +87,28 @@ def get_credentials(
     }
 
     return credentials
+
+
+def generate_source_yml(metadata: list[tuple, any], schema: str, file_path: str | None = None):
+    dbt_source = {"version": 2, "models": []}
+
+    tables = {}
+    for table, column, dtype in metadata:
+        if table not in tables:
+            tables[table] = {"name": table, "config": {"contract": {"enforced": True}}, "columns": []}
+        tables[table]["columns"].append({"name": column, "data_type": dtype})
+
+    for table in tables.values():
+        dbt_source["models"].append(table)
+
+    yaml_str = yaml.safe_dump(
+        dbt_source,
+        sort_keys=False,
+        default_flow_style=False,
+    )
+
+    if file_path:
+        with open(file_path, "w") as file:
+            file.write(yaml_str)
+    else:
+        sys.stdout.write(yaml_str)

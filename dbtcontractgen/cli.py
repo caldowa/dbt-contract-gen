@@ -1,7 +1,7 @@
 import click
 
 from dbtcontractgen.connection.postgresql import PostgreSQLConnection
-from dbtcontractgen.utils.dbt import get_credentials
+from dbtcontractgen.utils.dbt import generate_source_yml, get_credentials
 from dbtcontractgen.utils.queries import FETCH_METADATA_QUERY
 
 
@@ -55,7 +55,13 @@ def cli():
     type=str,
     help="Specify the path of your dbt profile",
 )
-def extract(schema, table, database, profile, target, filepath):
+@click.option(
+    "-o",
+    "--output",
+    type=str,
+    help="Specify the path of the output file",
+)
+def extract(schema, table, database, profile, target, filepath, output):
     click.echo(f"Schema: {schema}")
     for t in table:
         click.echo(f"Table: {t}")
@@ -64,8 +70,8 @@ def extract(schema, table, database, profile, target, filepath):
         credentials = get_credentials(profile_name=profile, target_name=target, profiles_path=filepath)
         with PostgreSQLConnection(**credentials) as conn:
             result = conn.run_query(FETCH_METADATA_QUERY.format(schema=schema))
-        print(result)
-        print(type(result))
+            generate_source_yml(metadata=result, schema=schema, file_path=output)
+
     elif database == "redshift":
         credentials = get_credentials(profile_name=profile, target_name=target, profiles_path=filepath)
         print(credentials)
