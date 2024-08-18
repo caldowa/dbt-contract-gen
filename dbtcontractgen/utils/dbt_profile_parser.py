@@ -39,10 +39,10 @@ def get_dbt_target(
     :return: The validated target environment with credentials.
     """
     if profiles_path is None:
-        profiles_path = Path.home() / ".dbt" / "profiles.yaml"
+        profiles_path = Path.home() / ".dbt" / "profiles.yml"
 
     if not profiles_path.exists():
-        raise FileNotFoundError(f"profiles.yaml not found at {profiles_path}")
+        raise FileNotFoundError(f"profiles.yml not found at {profiles_path}")
 
     with profiles_path.open("r") as file:
         profiles = yaml.safe_load(file)
