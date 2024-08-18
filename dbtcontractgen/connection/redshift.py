@@ -3,7 +3,7 @@ import redshift_connector
 from dbtcontractgen.connection.base import DatabaseConnection
 
 
-class RedsiftConnection(DatabaseConnection):
+class RedshiftConnection(DatabaseConnection):
     def connect(self):
         self.conn = redshift_connector.connect(
             host=self.host, database=self.database, user=self.user, password=self.password, port=self.port
