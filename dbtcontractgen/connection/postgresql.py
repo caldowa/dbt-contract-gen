@@ -1,6 +1,6 @@
 import psycopg2
 
-from dbtcontractgen.connection import DatabaseConnection
+from dbtcontractgen.connection.base import DatabaseConnection
 
 
 class PostgreSQLConnection(DatabaseConnection):

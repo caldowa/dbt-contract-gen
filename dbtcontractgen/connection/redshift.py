@@ -1,6 +1,6 @@
 import redshift_connector
 
-from dbtcontractgen.connection import DatabaseConnection
+from dbtcontractgen.connection.base import DatabaseConnection
 
 
 class RedsiftConnection(DatabaseConnection):
